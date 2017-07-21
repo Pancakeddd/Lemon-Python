@@ -1,7 +1,7 @@
 - `OVR <Register> , <Value>`
     - Overwrites that register with the value.
 - `SWP <Register> , <Register>`
-    -Swaps 2 registers.
+    - Swaps 2 registers.
 - `PRT <Register>`
     - Prints that register.
 - `NEW <Register name (Only 3 chars)>, <Inital Value>`
