@@ -142,7 +142,7 @@ class lexer:
 
                         np+=1
                     
-                    returnlex.append("FUNCTION ,{0}, [{1}]".format(split1[i+1],outtext))
+                    returnlex.append("FUNCTION ,{0}, <{1}>".format(split1[i+1],outtext))
              #Register Collection
              elif(split1[i] == "RCL"):
                     called = True
@@ -175,7 +175,7 @@ class lexer:
 
                         np+=1
                     
-                    returnlex.append("REGCOLLECTION ,{0}, [{1}]".format(split1[i+1],outtext))
+                    returnlex.append("REGCOLLECTION ,{0}, <{1}>".format(split1[i+1],outtext))
              #Register Collection
              elif(split1[i] == "ILO"):
                     called = True
@@ -209,9 +209,9 @@ class lexer:
 
                         np+=1
                     if(isint(split1[i+1])):
-                        returnlex.append("LOOPI,{0}, [{1}]".format(split1[i+1],outtext))
+                        returnlex.append("LOOPI,{0}, <{1}>".format(split1[i+1],outtext))
                     elif(isreg(split1[i+1])):
-                        returnlex.append("LOOP,{0}, [{1}]".format(split1[i+1],outtext))
+                        returnlex.append("LOOP,{0}, <{1}>".format(split1[i+1],outtext))
                     else:
                         returnlex.append("LOOP,!{0}!".format(split1[i+1]))
              elif(split1[i] == "IFF"):
@@ -257,10 +257,10 @@ class lexer:
                     else:
                         returnlex.append("IFSTATE,!{0}!".format(split1[i+1]))
              else:
-                if(isreg(split1[0]) and called == False):
+                if(isreg(split1[i]) and called == False):
                     returnlex.append("FUNCCALL,{0}".format(split1[i]))
                 elif(called == False):
-                    returnlex.append("!{0}!".format(split1[0]))
+                    returnlex.append("!{0}!".format(split1[i]))
 
 
 
@@ -276,5 +276,5 @@ class lexer:
      return returnlex
 
 l = lexer()
-print(l.lex(["NEW,TEX,50"]))
+print(l.lex(["RCL, XY-, []","FNC, MOL, {MAT,-,XY-[X--],1,XY-[X--]}","ILO, -1, {MOL}"]))
 
